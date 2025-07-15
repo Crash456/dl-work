@@ -12,7 +12,7 @@ x = np.concatenate((np.ones([x.shape[0], 1]), x), axis=1)
 dim = x.shape[1]
 w = np.zeros((dim, 1))
 learning_rate = 100
-iterations = 1000
+iterations = 5000  # 迭代次数
 adagrad = np.zeros((dim, 1))
 eps = 1e-10
 
