@@ -1,5 +1,4 @@
 # 1 载入train.csv
-import sys
 import pandas as pd
 import numpy as np
 import math
@@ -99,14 +98,14 @@ test_data[test_data == "NR"] = 0
 # 将dataframe变成numpy数组
 test_data = test_data.to_numpy()
 # 将test数据也变成 240 个维度为 18 * 9 + 1 的数据。
-test_x = np.empty([240, 18 * 9], dtype=float)
+test_x = np.empty([240, 18 * 9 + 1], dtype=float)
 for i in range(240):
     test_x[i, :] = test_data[18 * i : 18 * (i + 1), :].reshape(1, -1)
 for i in range(len(test_x)):
     for j in range(len(test_x[0])):
         if std_x[j] != 0:
             test_x[i][j] = (test_x[i][j] - mean_x[j]) / std_x[j]
-test_x = np.concatenate((np.ones([240, 1]), test_x), axis=1).astype(float)
+test_x = np.concatenate((np.ones([240, 1]), test_x), axis=1).astype(float)  # 添加偏置项
 print("测试数据", test_x)  # 显示测试数据
 
 w = np.load("./weight.npy")
