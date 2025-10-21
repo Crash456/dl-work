@@ -7,7 +7,6 @@ corpus = [
 
 # 分词
 sentences = [sentence.lower().split() for sentence in corpus]
-
 words = [word for sentence in sentences for word in sentence]
 vocab = list(set(words))
 word2idx = {w: i for i, w in enumerate(vocab)}
